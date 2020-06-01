@@ -118,8 +118,8 @@ void myCurl::sent(char *logstr1, char *logstr2, char *FROM_ADDR, char *TO_ADDR, 
 	/*curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);*/
 	curl = curl_easy_init();
-	curl_easy_setopt(curl, CURLOPT_USERNAME, logstr1/*"zxcasdqwe_54@mail.ru"*/);
-	curl_easy_setopt(curl, CURLOPT_PASSWORD, logstr2/*"1810092Alex"*/);
+	curl_easy_setopt(curl, CURLOPT_USERNAME, logstr1);
+	curl_easy_setopt(curl, CURLOPT_PASSWORD, logstr2);
 	curl_easy_setopt(curl, CURLOPT_URL, "smtps://smtp.mail.ru");
 	curl_easy_setopt(curl, CURLOPT_PORT, 465);
 	curl_easy_setopt(curl, CURLOPT_MAIL_FROM, FROM_ADDR);
@@ -159,7 +159,7 @@ void myCurl::sent(char *logstr1, char *logstr2, char *FROM_ADDR, char *TO_ADDR, 
 
 int myCurl::getQuantityOfMessage() {
 	int quantity = 0;
-	std::ifstream in("text1.txt"); // окрываем файл для чтения
+	std::ifstream in("text1.txt"); // Г®ГЄГ°Г»ГўГ ГҐГ¬ ГґГ Г©Г« Г¤Г«Гї Г·ГІГҐГ­ГЁГї
 	if (in.is_open())
 	{
 		while (!in.eof()) {
@@ -201,7 +201,7 @@ std::string myCurl::getText(char *sizeText, char *str5, char *str6, char *str7, 
 	BOOL base64 = false;
 	BOOL exit = false;
 	textOfMessage = "";
-	std::ifstream in("text1.txt"); // окрываем файл для чтения
+	std::ifstream in("text1.txt"); // Г®ГЄГ°Г»ГўГ ГҐГ¬ ГґГ Г©Г« Г¤Г«Гї Г·ГІГҐГ­ГЁГї
 	if (in.is_open())
 	{
 		while (!in.eof()) {
@@ -266,7 +266,7 @@ std::string myCurl::getText(char *sizeText, char *str5, char *str6, char *str7, 
 					str10[18] = '\0';
 				}
 				if (strcmp(str10, "Subject: =?UTF-8?") == 0 | strcmp(str10, "Subject: =?utf-8?") == 0 ) {
-					std::string buff;                                     //"Subject:  =?utf-8"
+					std::string buff;                                    
 					base64 = true;
 					for (int f = 0; f < strlen(str5); f++) {
 						buff.append(1, str5[f]);
@@ -482,44 +482,6 @@ std::string myCurl::getText(char *sizeText, char *str5, char *str6, char *str7, 
 	return textOfMessage;
 }
 
-//void getMessageByIndex() {
-//
-//	char url[25] = "pop3s://pop3.mail.ru/";
-//	char size[5];
-//	strcat(url, itoa(l, size, 10));
-//
-//	ftpfile = {
-//		"text1.txt", NULL
-//	};
-//
-//
-//	CURLcode res = CURLE_OK;
-//	curl_easy_setopt(curl, CURLOPT_URL, "pop3s://pop3.mail.ru/71/");
-//	curl_easy_setopt(curl, CURLOPT_PORT, 995);
-//	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-//	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-//	//curl_easy_setopt(curl, CURLOPT_POST, "charset = UTF-8");
-//
-//	//curl_easy_setopt(curl, CURLOPT_ACCEPT_ENCODING,"UTF-8");
-//	//curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0");
-//	//curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
-//
-//	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, my_fwrite);
-//	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ftpfile);
-//	curl_easy_setopt(curl, CURLOPT_CONV_FROM_UTF8_FUNCTION, my_conv_from_utf8_to_ebcdic);
-//	curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-//
-//
-//	res = curl_easy_perform(curl);
-//
-//	if (res != CURLE_OK)
-//		//cout << stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res);
-//		MessageBox(NULL, curl_easy_strerror(res), "Error", MB_OK);
-//
-//	fcloseall();
-//
-//}
-
 
 void myCurl::getMessage(char url[25], char *logstr1, char *logstr2) {
 
@@ -532,12 +494,7 @@ void myCurl::getMessage(char url[25], char *logstr1, char *logstr2) {
 	txtfile = {
 		"text1.txt", NULL
 	};
-	/*CURL *curl;
-	curl = curl_easy_init();*/
-	//curl_easy_setopt(curl, CURLOPT_SASL_AUTHZID, "Ursel");
-	//curl_easy_setopt(curl, CURLOPT_LOGIN_OPTIONS, "AUTH=PLAIN");
-	//curl_easy_setopt(curl, CURLOPT_USERNAME, "zxcasdqwe_54@mail.ru"/*logstr1*/);
-	//curl_easy_setopt(curl, CURLOPT_PASSWORD, "1810092Alex"/*logstr2*/);
+	
 	curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_USERNAME, logstr1/*"zxcasdqwe_54@mail.ru"*/);
 	curl_easy_setopt(curl, CURLOPT_PASSWORD, logstr2/*"1810092Alex"*/);
@@ -574,41 +531,6 @@ void myCurl::getMessage(char url[25], char *logstr1, char *logstr2) {
 	fcloseall();
 	textOfMessage = curl2.getText(sizeText, str5, str6, str7, str8, str9, textOfMessage);
 
-	//
-	//char url[25] = "pop3s://pop3.mail.ru/";
-	//char size[5];
-	//strcat(url, itoa((l - 1), size, 10));
-
-	//ftpfile = {
-	//	"text1.txt", NULL
-	//};
-	////CURL *curl;
-	//curl = curl_easy_init();
-	//curl_easy_setopt(curl, CURLOPT_USERNAME, "zxcasdqwe_54@mail.ru"/*logstr1*/);
-	//curl_easy_setopt(curl, CURLOPT_PASSWORD, "1810092Alex"/*logstr2*/);
-	//curl_easy_setopt(curl, CURLOPT_URL, url);
-	//curl_easy_setopt(curl, CURLOPT_PORT, 995);
-	//curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-	//curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-
-
-
-	////curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
-
-	//curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, my_fwrite);
-	//curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ftpfile);
-
-	//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-
-
-	//res = curl_easy_perform(curl);
-	////MessageBox(NULL, str, "OK", MB_OK);
-	///* Check for errors */
-	//if (res != CURLE_OK) {
-	//	MessageBox(NULL, curl_easy_strerror(res), "Error", MB_OK);
-	//}
-	//fcloseall();
-	//
 }
 
 size_t read_callback(void *ptr, size_t size, size_t nmemb, void *userdata)
@@ -682,41 +604,7 @@ void myCurl::sentFile(char *logstr1, char *logstr2, char *FROM_ADDR, char *TO_AD
 		curl_mime_free(form);
 		/* free slist */
 		curl_slist_free_all(headerlist);
-	//CURL *curl;
-	//CURLcode res = CURLE_OK;
-
-	////FILE *fd;
-	//FILE *fd = fopen("text.txt", "rb");
-	//struct curl_slist *recipients = NULL;
-	//struct upload_status upload_ctx;
-	//upload_ctx.lines_read = 0;
-
-	////fd = fopen("text.txt", "rb");
-	//if(!fd)
-	//	MessageBox(NULL, "File not open", "OK", MB_OK);
-	//curl = curl_easy_init();
-	//curl_easy_setopt(curl, CURLOPT_USERNAME, logstr1/*"zxcasdqwe_54@mail.ru"*/);
-	//curl_easy_setopt(curl, CURLOPT_PASSWORD, logstr2/*"1810092Alex"*/);
-	//curl_easy_setopt(curl, CURLOPT_URL, "smtps://smtp.mail.ru");
-	//curl_easy_setopt(curl, CURLOPT_PORT, 465);
-	//curl_easy_setopt(curl, CURLOPT_MAIL_FROM, FROM_ADDR);
-
-
-	//recipients = curl_slist_append(recipients, TO_ADDR);
-
-	//curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);
-	//curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-	//curl_easy_setopt(curl, CURLOPT_READDATA, fd);
-	////curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
-	//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-	//res = curl_easy_perform(curl);
-	//if (res != CURLE_OK)
-	//	MessageBox(NULL, curl_easy_strerror(res), "Error", MB_OK);
-	//else
-	//	MessageBox(NULL, "Message was sented sucssecfuly", "OK", MB_OK);
-
-	//curl_easy_cleanup(curl);
-
+	
 }
 
 void myCurl::delMess(char url[25], char *logstr1, char *logstr2) {
