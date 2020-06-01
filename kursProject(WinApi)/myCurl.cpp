@@ -612,8 +612,8 @@ void myCurl::delMess(char url[25], char *logstr1, char *logstr2) {
 	CURL *curl;
 	CURLcode res = CURLE_OK;
 	curl = curl_easy_init();
-	curl_easy_setopt(curl, CURLOPT_USERNAME, logstr1/*"zxcasdqwe_54@mail.ru"*/);
-	curl_easy_setopt(curl, CURLOPT_PASSWORD, logstr2/*"1810092Alex"*/);
+	curl_easy_setopt(curl, CURLOPT_USERNAME, logstr1);
+	curl_easy_setopt(curl, CURLOPT_PASSWORD, logstr2);
 	curl_easy_setopt(curl, CURLOPT_URL, url);
 	curl_easy_setopt(curl, CURLOPT_PORT, 995);
 
